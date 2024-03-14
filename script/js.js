@@ -7,8 +7,8 @@ const ctx = canvas.getContext("2d");
 let x = canvas.width / 2;
 let y = canvas.height - 30;
 
-let dx = 2;
-let dy = -2;
+let dx = 4;
+let dy = -4;
 
 const ballRadius = 10;
 
@@ -40,8 +40,8 @@ function animate(){
             }else{
                 x = canvas.width / 2;
                 y = canvas.height - 30;
-                dx = 2;
-                dy = -2;
+                dx = 4;
+                dy = -4;
                 paddleX (canvas.width - paddleWidth) /2;
             }
         }
@@ -116,10 +116,15 @@ function collisionDetection(){
         for(let r = 0; r < brickRowCount; r++){
             const b = bricks[c][r];
             // calculations
-            if(b.status === 1){
+            if(b.status === 2){
                 if(x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight){
                     dy = -dy;
-                    b.status = 0;
+                    b.status--;
+                }
+            }else if(b.status === 1){
+                if(x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight){
+                    dy = -dy;
+                       b.status = 0;
                     score++;
                     if(score === brickRowCount * brickColumCount){
                         alert("KAMU MENANG,SELAMAT!");
@@ -144,14 +149,14 @@ const bricks = [];
 for(let c = 0; c < brickColumCount; c++){
     bricks[c] = [];
     for(let r = 0;r < brickRowCount; r++){
-        bricks[c][r] = {x: 0, y: 0, status : 1};
+        bricks[c][r] = {x: 0, y: 0, status : 2};
     }
 }
 
 function drawBricks(){
     for(let c = 0; c < brickColumCount; c++){
         for(let r = 0; r < brickRowCount; r++){
-           if(bricks[c][r].status === 1){
+           if(bricks[c][r].status === 2){
             const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
             const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
 
@@ -161,6 +166,18 @@ function drawBricks(){
             ctx.beginPath();
             ctx.rect(brickX,brickY,brickWidth,brickHeight);
             ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath()
+           }else if(bricks[c][r].status === 1){
+            const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+            const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+
+            bricks[c][r].x = brickX;
+            bricks[c][r].y = brickY;
+
+            ctx.beginPath();
+            ctx.rect(brickX,brickY,brickWidth,brickHeight);
+            ctx.fillStyle = "red";
             ctx.fill();
             ctx.closePath()
            }
