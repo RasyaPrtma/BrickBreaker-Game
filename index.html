@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Game</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        .game{
+            margin-top: 5rem;
+            display: grid;
+            place-items: center;
+        }
+        #canvas{
+            display: block;
+            background: cyan;
+            margin: 0 auto;
+        }
+        #start{
+            padding: 12px 20px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            background: cyan;
+            color: #fff;
+            font-weight: bold;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="game">
+        <canvas id="canvas"></canvas>
+        <button id="start">Start Game</button>
+    </div>
+    <script src="script/js.js"></script>
+</body>
+</html>
