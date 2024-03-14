@@ -73,7 +73,7 @@ start.addEventListener('click',function(){
 })
 
 const paddleHeight = 10;
-const paddleWidth = 85;
+const paddleWidth = 95;
 let paddleX = (canvas.width - paddleWidth) / 2;
 let paddleY = (canvas.height - paddleHeight);
 
